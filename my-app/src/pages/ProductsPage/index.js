@@ -16,25 +16,28 @@ const Container = styled.div`
 
 const Title = styled.div`
   width: 100%;
-  font-size: 2rem;
-  line-height: 2rem;
+  font-size: 32px;
+  line-height: 36px;
   font-weight: 800;
   text-align: left;
+  color: #45d09e;
 `;
 
 const Subtitle = styled.div`
   width: 100%;
-  font-size: 1.2rem;
-  line-height: 1.2rem;
+  font-size: 18px;
+  line-height: 24px;
   text-align: left;
-  margin-top: 40px;
+  margin-top: 30px;
+  color: #3b3b3b;
 `;
 
 const ProductsContainer = styled.div`
   width: 100%;
   margin-top: 50px;
   background-color: white;
-  box-shadow: 0px 0px 20px rgb(0 0 0 / 4%);
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 6%);
+  border-radius: 5px;
 `;
 
 const ProductsTitles = styled.div`
@@ -73,21 +76,23 @@ const ProductsPage = () => {
       products[i].id = i + 1;
     }
     products.forEach((product) => {
-      console.log(product);
       product.slicedContractAddress = product.contractAddress
         ? product.contractAddress.slice(0, 25) + "..."
-        : "";
+        : "-";
+      product.minimun = "100 USDC";
+      product.flexible = product.period ? product.period : "Flexible";
+      product.volumn = product.volumn.replace("ⓢ", "");
+      product.startDate = product.startDate
+        ? product.startDate.replaceAll("-", "/")
+        : "-";
     });
+
     setProducts([...data.data.en]);
   };
 
   useEffect(() => {
     getProductsData();
   }, []);
-
-  useEffect(() => {
-    console.log(products);
-  }, [products]);
 
   return (
     <Container>

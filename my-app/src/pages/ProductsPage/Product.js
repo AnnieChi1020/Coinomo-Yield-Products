@@ -4,7 +4,9 @@ import arrow from "../../images/arrow.svg";
 
 const Container = styled.div`
   width: 100%;
-  border-bottom: 1px solid #e6e6e6;
+  & + & {
+    border-top: 1px solid #e6e6e6;
+  }
 `;
 
 const InfoDiv = styled.div`
@@ -38,11 +40,14 @@ const RotatedButton = styled(ButtonImg)`
 `;
 
 const DetailDiv = styled.div`
-  width: 100%;
-  padding: 0px 50px 30px 50px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  max-height: ${(props) => (props.open ? "100%" : "0")};
+  overflow: hidden;
+  opacity: ${(props) => (props.open ? "1" : "0")};
+  padding: ${(props) => (props.open ? "0px 50px 30px 50px" : "0px 50px")};
+  transition: all 300ms ease-in-out;
 `;
 
 const IntroRow = styled.div`
@@ -78,8 +83,18 @@ const Title = styled.div`
 `;
 
 const Text = styled.div`
-  font-size: 12px;
-  line-height: 18px;
+  font-size: 14px;
+  line-height: 20px;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  & :hover {
+    color: #2e8b68;
+    text-decoration: underline;
+  }
 `;
 
 const Product = (props) => {
@@ -89,14 +104,22 @@ const Product = (props) => {
     setShowDetail(showDetail ? false : true);
   };
 
+  const product = props.product;
+
+  const infoArray = [
+    product.name,
+    product.type,
+    product.flexible,
+    product.minimun,
+    `${product.apr}%`,
+  ];
+
   return (
     <Container>
       <InfoDiv>
-        <Info>{props.product.name}</Info>
-        <Info>{props.product.type}</Info>
-        <Info>12345</Info>
-        <Info>12345</Info>
-        <Info>{`${props.product.apr}%`}</Info>
+        {infoArray.map((info, index) => (
+          <Info key={index}>{info}</Info>
+        ))}
         <Button onClick={handleClick}>
           {showDetail ? (
             <RotatedButton src={arrow} />
@@ -105,44 +128,50 @@ const Product = (props) => {
           )}
         </Button>
       </InfoDiv>
-      {showDetail && (
-        <DetailDiv>
-          <IntroRow>
-            <Title>Introduction</Title>
-            <Text>{props.product.introduction}</Text>
-          </IntroRow>
-          <IssuerRow>
-            <Detail>
-              <Title>Issuer</Title>
-              <Text>{props.product.issuer}</Text>
-            </Detail>
-            <Detail>
-              <Title>Issuer Website</Title>
-              <Text>{props.product.websiteUrl}</Text>
-            </Detail>
-          </IssuerRow>
-          <AdditionalDetailRow>
-            <Detail>
-              <Title>Start Date</Title>
-              <Text>{props.product.startDate}</Text>
-            </Detail>
-            <Detail>
-              <Title>Total Value Locked</Title>
-              <Text>https://google.com</Text>
-            </Detail>
-            <Detail>
-              <Title>Contract Address</Title>
-              <a href={props.product.contractAddress}>
-                <Text>{props.product.slicedContractAddress}</Text>
-              </a>
-            </Detail>
-            <Detail>
-              <Title>Risk Level</Title>
-              <Text>{props.product.riskLevel}</Text>
-            </Detail>
-          </AdditionalDetailRow>
-        </DetailDiv>
-      )}
+      {/* {showDetail && ( */}
+      <DetailDiv open={showDetail}>
+        <IntroRow>
+          <Title>Introduction</Title>
+          <Text>{product.introduction}</Text>
+        </IntroRow>
+        <IssuerRow>
+          <Detail>
+            <Title>Issuer</Title>
+            <Text>{product.issuer}</Text>
+          </Detail>
+          <Detail>
+            <Title>Issuer Website</Title>
+            <Link href={product.websiteUrl}>
+              <Text>{product.websiteUrl}</Text>
+            </Link>
+          </Detail>
+        </IssuerRow>
+        <AdditionalDetailRow>
+          <Detail>
+            <Title>Start Date</Title>
+            <Text>{product.startDate}</Text>
+          </Detail>
+          <Detail>
+            <Title>Total Value Locked</Title>
+            <Text>{product.volumn}</Text>
+          </Detail>
+          <Detail>
+            <Title>Contract Address</Title>
+            {product.contractAddress ? (
+              <Link href={product.contractAddress}>
+                <Text>{product.slicedContractAddress}</Text>
+              </Link>
+            ) : (
+              <Text>{product.slicedContractAddress}</Text>
+            )}
+          </Detail>
+          <Detail>
+            <Title>Risk Level</Title>
+            <Text>{product.riskLevel}</Text>
+          </Detail>
+        </AdditionalDetailRow>
+      </DetailDiv>
+      {/* )} */}
     </Container>
   );
 };

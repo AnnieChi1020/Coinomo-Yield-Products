@@ -6,6 +6,7 @@ const Container = styled.div`
   background-color: #46d09d;
   position: fixed;
   top: 0;
+  z-index: 5;
 `;
 
 const MainContent = styled.div`
