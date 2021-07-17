@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
 import { getProducts } from "../../utils/api";
+import ReactLoading from "react-loading";
 
 const Container = styled.div`
   width: 95%;
@@ -63,10 +64,16 @@ const ProductsButton = styled.div`
   align-items: center;
 `;
 
+const Loading = styled(ReactLoading)`
+  padding: 60px 0;
+  margin: 0 auto;
+`;
+
 const productTitles = ["Name", "Type", "Flexible", "Minimum", "APY"];
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
+  const [loaded, setLoaded] = useState(false);
 
   const getProductsData = async () => {
     const data = await getProducts();
@@ -88,6 +95,7 @@ const ProductsPage = () => {
     });
 
     setProducts([...data.data.en]);
+    setLoaded(true);
   };
 
   useEffect(() => {
@@ -108,9 +116,18 @@ const ProductsPage = () => {
           ))}
           <ProductsButton />
         </ProductsTitles>
-        {products.map((product) => (
-          <Product key={product.vault.Production.id} product={product} />
-        ))}
+        {loaded ? (
+          products.map((product) => (
+            <Product key={product.vault.Production.id} product={product} />
+          ))
+        ) : (
+          <Loading
+            type={"spokes"}
+            color={"#4f4f4f"}
+            height={"80px"}
+            width={"80px"}
+          />
+        )}
       </ProductsContainer>
     </Container>
   );
