@@ -6,6 +6,7 @@ const Container = styled.div`
   width: 100%;
   margin-top: 20px;
   border: 1px solid #3d3d3d;
+  background-color: white;
 `;
 
 const InfoDiv = styled.div`
@@ -32,6 +33,10 @@ const Button = styled.div`
 const ButtonImg = styled.img`
   width: 15px;
   height: auto;
+`;
+
+const RotatedButton = styled(ButtonImg)`
+  transform: rotate(-90deg);
 `;
 
 const DetailDiv = styled.div`
@@ -63,8 +68,6 @@ const AdditionalDetailRow = styled.div`
 
 const Detail = styled.div`
   width: 100%;
-  display: flex;
-  flex-direction: column;
   text-align: left;
   padding: 15px 0;
 `;
@@ -97,14 +100,18 @@ const Product = (props) => {
         <Info>12345</Info>
         <Info>{`${props.product.apr}%`}</Info>
         <Button onClick={handleClick}>
-          <ButtonImg src={arrow} />
+          {showDetail ? (
+            <RotatedButton src={arrow} />
+          ) : (
+            <ButtonImg src={arrow} />
+          )}
         </Button>
       </InfoDiv>
       {showDetail && (
         <DetailDiv>
           <IntroRow>
             <Title>Introduction</Title>
-            <Text>Hello World</Text>
+            <Text>{props.product.introduction}</Text>
           </IntroRow>
           <IssuerRow>
             <Detail>
@@ -119,7 +126,7 @@ const Product = (props) => {
           <AdditionalDetailRow>
             <Detail>
               <Title>Start Date</Title>
-              <Text>2021/4/21</Text>
+              <Text>{props.product.startDate}</Text>
             </Detail>
             <Detail>
               <Title>Total Value Locked</Title>
@@ -127,7 +134,9 @@ const Product = (props) => {
             </Detail>
             <Detail>
               <Title>Contract Address</Title>
-              <Text>{props.product.contractAddress}</Text>
+              <a href={props.product.contractAddress}>
+                <Text>{props.product.slicedContractAddress}</Text>
+              </a>
             </Detail>
             <Detail>
               <Title>Risk Level</Title>

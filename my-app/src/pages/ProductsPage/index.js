@@ -31,6 +31,7 @@ const Subtitle = styled.div`
 const ProductsContainer = styled.div`
   width: 100%;
   padding: 20px 0;
+  /* background-color: white; */
 `;
 
 const ProductsTitles = styled.div`
@@ -39,7 +40,7 @@ const ProductsTitles = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 0;
+  padding: 20px 0;
 `;
 
 const ProductsTitle = styled.div`
@@ -61,10 +62,17 @@ const ProductsPage = () => {
 
   const getProductsData = async () => {
     const data = await getProducts();
+    console.log(data);
     const products = data.data.en;
     for (let i = 0; i < products.length; i++) {
       products[i].id = i + 1;
     }
+    products.forEach((product) => {
+      console.log(product);
+      product.slicedContractAddress = product.contractAddress
+        ? product.contractAddress.slice(0, 25) + "..."
+        : "";
+    });
     setProducts([...data.data.en]);
   };
 
