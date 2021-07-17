@@ -10,6 +10,8 @@ const Container = styled.div`
   margin: 0 auto;
   margin-top: 70px;
   padding: 50px 20px;
+  background-color: white;
+  box-sizing: border-box;
 `;
 
 const Title = styled.div`
@@ -30,17 +32,20 @@ const Subtitle = styled.div`
 
 const ProductsContainer = styled.div`
   width: 100%;
-  padding: 20px 0;
-  /* background-color: white; */
+  margin-top: 50px;
+  background-color: white;
+  box-shadow: 0px 0px 20px rgb(0 0 0 / 4%);
 `;
 
 const ProductsTitles = styled.div`
   width: 100%;
-  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 20px 0;
+  border-bottom: 1px solid #d2d2d2;
+  background-color: #f3f3f3;
+  border-radius: 5px 5px 0 0;
 `;
 
 const ProductsTitle = styled.div`

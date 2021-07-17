@@ -5,8 +5,6 @@ import Products from "./pages/ProductsPage";
 
 const Container = styled.div`
   width: 100%;
-  min-height: calc(100vh - 70px);
-  /* background-color: #fafafa; */
 `;
 
 function App() {

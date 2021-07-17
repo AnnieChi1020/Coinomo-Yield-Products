@@ -4,14 +4,12 @@ import arrow from "../../images/arrow.svg";
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 20px;
-  border: 1px solid #3d3d3d;
-  background-color: white;
+  border-bottom: 1px solid #e6e6e6;
 `;
 
 const InfoDiv = styled.div`
   width: 100%;
-  padding: 20px 0;
+  padding: 30px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,8 +39,7 @@ const RotatedButton = styled(ButtonImg)`
 
 const DetailDiv = styled.div`
   width: 100%;
-  padding: 20px 50px;
-  border-top: 1px solid grey;
+  padding: 0px 50px 30px 50px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -53,7 +50,8 @@ const IntroRow = styled.div`
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding: 15px 0;
+  padding: 25px 0 15px 0;
+  border-top: 1px solid #e6e6e6;
 `;
 
 const IssuerRow = styled.div`
