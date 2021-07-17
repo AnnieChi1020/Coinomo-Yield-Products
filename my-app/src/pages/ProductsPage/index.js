@@ -5,7 +5,7 @@ import { getProducts } from "../../utils/api";
 
 const Container = styled.div`
   width: 95%;
-  height: 500px;
+  min-height: 100vh;
   max-width: 1200px;
   margin: 0 auto;
   margin-top: 70px;
