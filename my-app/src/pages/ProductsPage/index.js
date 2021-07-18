@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import Product from "./Product";
-import { getProducts } from "../../utils/api";
+import { getProductsData } from "../../utils/api";
 import ReactLoading from "react-loading";
 
 const Container = styled.div`
@@ -18,22 +18,33 @@ const Container = styled.div`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.h1`
   width: 100%;
+  margin: 0;
   font-size: 32px;
   line-height: 36px;
   font-weight: 800;
   text-align: left;
   color: #45d09e;
+  @media (max-width: 760px) {
+    font-size: 28px;
+    line-height: 32px;
+  }
 `;
 
-const Subtitle = styled.div`
+const Subtitle = styled.h2`
   width: 100%;
   font-size: 18px;
   line-height: 24px;
   text-align: left;
-  margin-top: 30px;
+  margin: 30px 0 0 0;
+  font-weight: normal;
   color: #3b3b3b;
+  @media (max-width: 760px) {
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 15px;
+  }
 `;
 
 const ProductsContainer = styled.div`
@@ -42,6 +53,9 @@ const ProductsContainer = styled.div`
   background-color: white;
   box-shadow: 0px 0px 20px rgb(0 0 0 / 6%);
   border-radius: 5px;
+  @media (max-width: 760px) {
+    margin-top: 30px;
+  }
 `;
 
 const ProductsTitles = styled.div`
@@ -57,6 +71,7 @@ const ProductsTitles = styled.div`
   border-radius: 5px 5px 0 0;
   @media (max-width: 760px) {
     font-size: 14px;
+    padding: 10px 10px;
   }
 `;
 
@@ -78,21 +93,16 @@ const Loading = styled(ReactLoading)`
 `;
 
 const productTitles = ["Name", "Type", "Flexible", "Minimum", "APY"];
+const URL_LENGTH = 25;
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  const getProductsData = async () => {
-    const data = await getProducts();
-    console.log(data);
-    const products = data.data.en;
-    for (let i = 0; i < products.length; i++) {
-      products[i].id = i + 1;
-    }
+  const constructProductData = (products) => {
     products.forEach((product) => {
       product.slicedContractAddress = product.contractAddress
-        ? product.contractAddress.slice(0, 25) + "..."
+        ? product.contractAddress.slice(0, URL_LENGTH) + "..."
         : "-";
       product.minimun = "100 USDC";
       product.flexible = product.period ? product.period : "Flexible";
@@ -101,13 +111,19 @@ const ProductsPage = () => {
         ? product.startDate.replaceAll("-", "/")
         : "-";
     });
+    return products;
+  };
 
-    setProducts([...data.data.en]);
+  const setProductsData = async () => {
+    const data = await getProductsData();
+    const products = constructProductData(data.data.en);
+    setProducts([...products]);
     setLoaded(true);
   };
 
   useEffect(() => {
-    getProductsData();
+    setProductsData();
+    // eslint-disable-next-line
   }, []);
 
   return (

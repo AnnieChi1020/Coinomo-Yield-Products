@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import arrow from "../../images/arrow.svg";
 
 const Container = styled.div`
@@ -15,6 +15,7 @@ const InfoDiv = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   box-sizing: border-box;
   @media (max-width: 760px) {
     font-size: 12px;
@@ -37,13 +38,11 @@ const Button = styled.div`
 const ButtonImg = styled.img`
   width: 15px;
   height: auto;
+  transform: ${(props) => (props.rotate ? "rotate(0deg)" : "rotate(-90deg)")};
+  transition: all 300ms ease-in;
   @media (max-width: 760px) {
     width: 10px;
   }
-`;
-
-const RotatedButton = styled(ButtonImg)`
-  transform: rotate(-90deg);
 `;
 
 const DetailDiv = styled.div`
@@ -54,7 +53,7 @@ const DetailDiv = styled.div`
   overflow: hidden;
   opacity: ${(props) => (props.open ? "1" : "0")};
   padding: ${(props) => (props.open ? "0px 40px 30px 40px" : "0px 40px")};
-  transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in;
   @media (max-width: 760px) {
     font-size: 12px;
     padding: ${(props) => (props.open ? "0px 20px 30px 20px" : "0px 20px")};
@@ -75,7 +74,10 @@ const IntroRow = styled.div`
 
 const IssuerRow = styled.div`
   display: grid;
-  grid-template-columns: 0.8fr 3.2fr;
+  grid-template-columns: 0.9fr 3.1fr;
+  @media (max-width: 760px) {
+    grid-template-columns: 0.8fr 3.2fr;
+  }
   @media (max-width: 540px) {
     grid-template-columns: 1fr;
   }
@@ -83,7 +85,10 @@ const IssuerRow = styled.div`
 
 const AdditionalDetailRow = styled.div`
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr 1.4fr 0.6fr;
+  grid-template-columns: 0.9fr 1.1fr 1.2fr 0.8fr;
+  @media (max-width: 760px) {
+    grid-template-columns: 0.8fr 1.2fr 1.4fr 0.6fr;
+  }
   @media (max-width: 540px) {
     grid-template-columns: 1fr;
   }
@@ -103,11 +108,12 @@ const Detail = styled.div`
   }
 `;
 
-const Title = styled.div`
+const Title = styled.h3`
   font-size: 16px;
   line-height: 24px;
   font-weight: bold;
   padding: 10px 0;
+  margin: 0;
   @media (max-width: 760px) {
     font-size: 12px;
     padding: 5px 0;
@@ -127,7 +133,7 @@ const IntroTitle = styled(Title)`
   }
 `;
 
-const Text = styled.div`
+const Text = styled.span`
   font-size: 14px;
   line-height: 20px;
   display: flex;
@@ -161,7 +167,7 @@ const Link = styled.a`
 const Product = (props) => {
   const [showDetail, setShowDetail] = useState(false);
 
-  const handleClick = () => {
+  const handleToggle = () => {
     setShowDetail(showDetail ? false : true);
   };
 
@@ -181,12 +187,8 @@ const Product = (props) => {
         {infoArray.map((info, index) => (
           <Info key={index}>{info}</Info>
         ))}
-        <Button onClick={handleClick}>
-          {showDetail ? (
-            <RotatedButton src={arrow} />
-          ) : (
-            <ButtonImg src={arrow} />
-          )}
+        <Button onClick={handleToggle}>
+          <ButtonImg rotate={showDetail} src={arrow} />
         </Button>
       </InfoDiv>
       <DetailDiv open={showDetail}>
