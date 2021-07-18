@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/Coinomo-Yield-Products/static/css/main.a617e044.chunk.css",
+    "main.js": "/Coinomo-Yield-Products/static/js/main.756643b1.chunk.js",
+    "main.js.map": "/Coinomo-Yield-Products/static/js/main.756643b1.chunk.js.map",
+    "runtime-main.js": "/Coinomo-Yield-Products/static/js/runtime-main.598a8b7b.js",
+    "runtime-main.js.map": "/Coinomo-Yield-Products/static/js/runtime-main.598a8b7b.js.map",
+    "static/js/2.673be86d.chunk.js": "/Coinomo-Yield-Products/static/js/2.673be86d.chunk.js",
+    "static/js/2.673be86d.chunk.js.map": "/Coinomo-Yield-Products/static/js/2.673be86d.chunk.js.map",
+    "static/js/3.fcbbd17a.chunk.js": "/Coinomo-Yield-Products/static/js/3.fcbbd17a.chunk.js",
+    "static/js/3.fcbbd17a.chunk.js.map": "/Coinomo-Yield-Products/static/js/3.fcbbd17a.chunk.js.map",
+    "index.html": "/Coinomo-Yield-Products/index.html",
+    "static/css/main.a617e044.chunk.css.map": "/Coinomo-Yield-Products/static/css/main.a617e044.chunk.css.map",
+    "static/js/2.673be86d.chunk.js.LICENSE.txt": "/Coinomo-Yield-Products/static/js/2.673be86d.chunk.js.LICENSE.txt",
+    "static/media/arrow.5b0512cf.svg": "/Coinomo-Yield-Products/static/media/arrow.5b0512cf.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.598a8b7b.js",
+    "static/js/2.673be86d.chunk.js",
+    "static/css/main.a617e044.chunk.css",
+    "static/js/main.756643b1.chunk.js"
+  ]
+}
