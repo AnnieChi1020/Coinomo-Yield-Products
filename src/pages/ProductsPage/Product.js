@@ -129,7 +129,7 @@ const Title = styled.h3`
 const IntroTitle = styled(Title)`
   @media (max-width: 540px) {
     width: 100%;
-    padding: 5px 0;
+    padding: 10px 0;
   }
 `;
 
