@@ -13,6 +13,9 @@ const Container = styled.div`
   padding: 50px 20px;
   background-color: white;
   box-sizing: border-box;
+  @media (max-width: 540px) {
+    padding: 50px 0px;
+  }
 `;
 
 const Title = styled.div`
@@ -45,11 +48,16 @@ const ProductsTitles = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 20px 0;
+  justify-content: space-around;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 20px 10px;
   border-bottom: 1px solid #d2d2d2;
   background-color: #f3f3f3;
   border-radius: 5px 5px 0 0;
+  @media (max-width: 760px) {
+    font-size: 14px;
+  }
 `;
 
 const ProductsTitle = styled.div`
@@ -58,7 +66,7 @@ const ProductsTitle = styled.div`
 `;
 
 const ProductsButton = styled.div`
-  width: 80px;
+  width: 30px;
   flex-grow: 0;
   display: flex;
   align-items: center;

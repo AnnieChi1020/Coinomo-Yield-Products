@@ -11,10 +11,14 @@ const Container = styled.div`
 
 const InfoDiv = styled.div`
   width: 100%;
-  padding: 30px 0;
+  padding: 30px 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
+  box-sizing: border-box;
+  @media (max-width: 760px) {
+    font-size: 12px;
+  }
 `;
 
 const Info = styled.div`
@@ -23,7 +27,7 @@ const Info = styled.div`
 `;
 
 const Button = styled.div`
-  width: 80px;
+  width: 30px;
   flex-grow: 0;
   display: flex;
   align-items: center;
@@ -33,6 +37,9 @@ const Button = styled.div`
 const ButtonImg = styled.img`
   width: 15px;
   height: auto;
+  @media (max-width: 760px) {
+    width: 10px;
+  }
 `;
 
 const RotatedButton = styled(ButtonImg)`
@@ -46,8 +53,12 @@ const DetailDiv = styled.div`
   max-height: ${(props) => (props.open ? "100%" : "0")};
   overflow: hidden;
   opacity: ${(props) => (props.open ? "1" : "0")};
-  padding: ${(props) => (props.open ? "0px 50px 30px 50px" : "0px 50px")};
+  padding: ${(props) => (props.open ? "0px 40px 30px 40px" : "0px 40px")};
   transition: all 300ms ease-in-out;
+  @media (max-width: 760px) {
+    font-size: 12px;
+    padding: ${(props) => (props.open ? "0px 20px 30px 20px" : "0px 20px")};
+  }
 `;
 
 const IntroRow = styled.div`
@@ -57,34 +68,84 @@ const IntroRow = styled.div`
   text-align: left;
   padding: 25px 0 15px 0;
   border-top: 1px solid #e6e6e6;
+  @media (max-width: 760px) {
+    padding: 15px 0 10px 0;
+  }
 `;
 
 const IssuerRow = styled.div`
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 0.8fr 3.2fr;
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const AdditionalDetailRow = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.8fr 1.2fr 1.4fr 0.6fr;
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Detail = styled.div`
   width: 100%;
   text-align: left;
   padding: 15px 0;
+  @media (max-width: 760px) {
+    padding: 10px 0;
+  }
+  @media (max-width: 540px) {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+  }
 `;
 
 const Title = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   font-weight: bold;
   padding: 10px 0;
+  @media (max-width: 760px) {
+    font-size: 12px;
+    padding: 5px 0;
+  }
+  @media (max-width: 540px) {
+    padding: 0;
+    line-height: 16px;
+    width: 130px;
+    flex-grow: 0;
+  }
+`;
+
+const IntroTitle = styled(Title)`
+  @media (max-width: 540px) {
+    width: 100%;
+    padding: 5px 0;
+  }
 `;
 
 const Text = styled.div`
   font-size: 14px;
   line-height: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  @media (max-width: 760px) {
+    font-size: 12px;
+  }
+  @media (max-width: 540px) {
+    line-height: 16px;
+    width: 100px;
+    flex-grow: 1;
+  }
+`;
+
+const IntroText = styled(Text)`
+  @media (max-width: 540px) {
+    width: 100%;
+  }
 `;
 
 const Link = styled.a`
@@ -128,11 +189,10 @@ const Product = (props) => {
           )}
         </Button>
       </InfoDiv>
-      {/* {showDetail && ( */}
       <DetailDiv open={showDetail}>
         <IntroRow>
-          <Title>Introduction</Title>
-          <Text>{product.introduction}</Text>
+          <IntroTitle>Introduction</IntroTitle>
+          <IntroText>{product.introduction}</IntroText>
         </IntroRow>
         <IssuerRow>
           <Detail>
@@ -171,7 +231,6 @@ const Product = (props) => {
           </Detail>
         </AdditionalDetailRow>
       </DetailDiv>
-      {/* )} */}
     </Container>
   );
 };
