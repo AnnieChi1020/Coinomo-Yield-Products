@@ -1,4 +1,4 @@
-export const getProducts = async () => {
+export const getProductsData = async () => {
   const response = await fetch(
     "https://us-central1-dapp-pocket.cloudfunctions.net/cappuuApp/projects",
     {
