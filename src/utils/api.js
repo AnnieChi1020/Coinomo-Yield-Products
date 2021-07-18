@@ -4,7 +4,7 @@ export const getProductsData = async () => {
     {
       headers: new Headers({
         "Content-Type": "application/json",
-        Authorization: `Bearer c46da20b-f2cc-4e69-85c4-20d83c532abe`,
+        Authorization: `Bearer ${process.env.REACT_APP_TOKEN}`,
       }),
       method: "GET",
     }
