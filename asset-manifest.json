@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/Coinomo-Yield-Products/static/css/main.a617e044.chunk.css",
-    "main.js": "/Coinomo-Yield-Products/static/js/main.756643b1.chunk.js",
-    "main.js.map": "/Coinomo-Yield-Products/static/js/main.756643b1.chunk.js.map",
+    "main.js": "/Coinomo-Yield-Products/static/js/main.a7faa3dd.chunk.js",
+    "main.js.map": "/Coinomo-Yield-Products/static/js/main.a7faa3dd.chunk.js.map",
     "runtime-main.js": "/Coinomo-Yield-Products/static/js/runtime-main.598a8b7b.js",
     "runtime-main.js.map": "/Coinomo-Yield-Products/static/js/runtime-main.598a8b7b.js.map",
     "static/js/2.673be86d.chunk.js": "/Coinomo-Yield-Products/static/js/2.673be86d.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.598a8b7b.js",
     "static/js/2.673be86d.chunk.js",
     "static/css/main.a617e044.chunk.css",
-    "static/js/main.756643b1.chunk.js"
+    "static/js/main.a7faa3dd.chunk.js"
   ]
 }
